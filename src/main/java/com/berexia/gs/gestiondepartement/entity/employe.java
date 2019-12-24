@@ -2,12 +2,27 @@ package com.berexia.gs.gestiondepartement.entity;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
 @Data
+@Entity
 public class employe {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     long idEmploye;
     String nomEmploye;
     String prenomEmploye;
     String ville;
+    @ManyToOne
+    departement departement;
+
+    public departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(departement departement) {
+        this.departement = departement;
+    }
 
     public long getIdEmploye() {
         return idEmploye;
