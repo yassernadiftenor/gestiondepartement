@@ -11,8 +11,11 @@ import java.util.List;
 public class departement {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column()
     long idDepart;
+    @Column()
     String nomDepart;
+    @Column()
     long Capacite;
     @OneToMany
     List<employe> employes = new ArrayList<employe>();

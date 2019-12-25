@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class departementServiceTest {
     @Autowired(required = true)
     departementService derpartementService;
+    departement departement= new departement();
     @Test
     public void findDepartementById() {
     }
@@ -27,8 +28,8 @@ public class departementServiceTest {
     @Test
     public void addDepartement() {
         departement dept = new departement();
-        dept.setIdDepart(4L);
-        dept.setNomDepart("tanger ");
+        dept.setIdDepart(1L);
+        dept.setNomDepart("asfi ");
         List<employe> employes=new ArrayList<>();
         dept.setCapacite(50L);
         dept.setEmployes(employes);
@@ -62,7 +63,16 @@ public class departementServiceTest {
     }
     @Test
     public void removeDepartementById() {
-
+        departement dept1 = new departement();
+        dept1.setIdDepart(6L);
+        dept1.setNomDepart("sal");
+        List<employe> employes=new ArrayList<>();
+        dept1.setCapacite(51L);
+        dept1.setEmployes(employes);
+        derpartementService.addDepartement(dept1);
+        derpartementService.removeDepartementById(dept1.getIdDepart());
+        Optional<departement> checkout = derpartementService.findDepartementById(dept1.getIdDepart());
+        assertEquals(Optional.empty(), checkout.get());
     }
 
     @Test
