@@ -2,7 +2,6 @@ package com.berexia.gs.gestiondepartement.service;
 
 import com.berexia.gs.gestiondepartement.entity.departement;
 import com.berexia.gs.gestiondepartement.exceptions.emptyFields;
-import com.berexia.gs.gestiondepartement.exceptions.gestionDepartExcept;
 import com.berexia.gs.gestiondepartement.exceptions.invalidFields;
 import com.berexia.gs.gestiondepartement.repository.departementRepository;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +18,7 @@ public class departementService {
     @Autowired
     departementRepository departementRepository ;
    departement dept;
-    public static final Logger logger = LogManager.getLogger(gestionDepartExcept.class.getName());
+    public static final Logger logger = LogManager.getLogger(departementService.class.getName());
 
     public Optional<departement> findDepartementById(Long idDept) {
         return departementRepository.findById(idDept);
@@ -30,7 +29,7 @@ public class departementService {
             throw new emptyFields("the departement name is empty ");
         }else if(departementByName(dept.getNomDepart())!=null){
             throw  new invalidFields("the departement name already exist");
-        }else {
+        } else {
             logger.info("departement has been added");
             departementRepository.save(dept);
         }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Data
 @Entity
+@Table
 public class departement {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
