@@ -1,11 +1,12 @@
 package com.berexia.gs.gestiondepartement.service;
 
-import com.berexia.gs.gestiondepartement.entity.departement;
 import com.berexia.gs.gestiondepartement.entity.employe;
 import com.berexia.gs.gestiondepartement.exceptions.emptyFields;
+import com.berexia.gs.gestiondepartement.exceptions.gestionDepartExcept;
 import com.berexia.gs.gestiondepartement.exceptions.invalidFields;
 import com.berexia.gs.gestiondepartement.repository.employeRepository;
-import com.sun.tools.sjavac.Log;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,13 +17,14 @@ import java.util.Optional;
 public class employeService {
        @Autowired
        employeRepository employeRepository1;
+    public static final Logger logger = LogManager.getLogger(gestionDepartExcept.class.getName());
 
 
        public employe addEmplye(employe empl){
-      if(empl.getNomEmploye()==""){
+      if(empl.getNomEmploye().equals("")){
           throw new emptyFields("the name of employee is empty");
       }else {
-          Log.info("employee has been added successfully");
+          logger.info("employee has been added successfully");
         return   employeRepository1.save(empl);
       }
   }
@@ -31,7 +33,7 @@ public class employeService {
       }
       public void removeEmployeById(long idEmpl){
            if(findEmplyeById(idEmpl).isPresent()){
-               Log.info("employee has been removed successfully");
+               logger.info("employee has been removed successfully");
                employeRepository1.deleteById(idEmpl);
            }else{
                throw new invalidFields("employee id is invalid");
@@ -40,9 +42,9 @@ public class employeService {
       public employe updateEmploye(employe empl){
            employe emplReturn=null;
           if (!findEmplyeById(empl.getIdEmploye()).isPresent()) {
-              Log.info("employee id is invalid");
+              logger.info("employee id is invalid");
           }else {
-              Log.info("employee has been updated successfully");
+              logger.info("employee has been updated successfully");
               emplReturn= employeRepository1.save(empl);
           }
           return emplReturn;
