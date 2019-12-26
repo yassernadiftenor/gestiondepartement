@@ -28,12 +28,12 @@ public class departementServiceTest {
     @Test
     public void addDepartement() {
         departement dept = new departement();
-        dept.setIdDepart(1L);
-        dept.setNomDepart("mpol");
+        dept.setIdDepart(13L);
+        dept.setNomDepart("mpùol");
         dept.setCapacite(50L);
         derpartementService.addDepartement(dept);
-        //Optional<departement> checkout = derpartementService.findDepartementById(dept.getIdDepart());
-        //assertEquals(dept.getNomDepart(), checkout.get().getNomDepart());
+        Optional<departement> checkout = derpartementService.findDepartementById(dept.getIdDepart());
+        assertEquals(dept.getNomDepart(), checkout.get().getNomDepart());
     }
     @Test(expected = emptyFields.class)
     public void addDepartementNomNullKo(){
@@ -50,7 +50,7 @@ public class departementServiceTest {
     @Test(expected = invalidFields.class)
     public void addDepartementNomInvalid(){
         departement dept = new departement();
-        dept.setIdDepart(1L);
+        dept.setIdDepart(12L);
         dept.setNomDepart("multimedia ");
         List<employe> employes=new ArrayList<>();
         dept.setCapacite(50L);

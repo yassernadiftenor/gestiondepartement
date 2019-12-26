@@ -54,6 +54,8 @@ public class departementService {
     public List<departement> getAllDepartement(){
         return (List<departement>) departementRepository.findAll();
     }
+
+
     public departement departementByName(String deptName ){
         for (departement dept :departementRepository.findAll()){
             if(dept.getNomDepart().equals(deptName)){
