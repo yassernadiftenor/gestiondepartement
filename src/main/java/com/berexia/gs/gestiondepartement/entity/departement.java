@@ -1,23 +1,25 @@
 package com.berexia.gs.gestiondepartement.entity;
 
-import lombok.Data;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-@Data
+
 @Entity
-@Table
+@Table(name ="DEPARTEMENT")
 public class departement {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column()
+    @Column(name = "id_depart")
     long idDepart;
-    @Column()
+    @Column(name ="")
     String nomDepart;
     @Column()
     long Capacite;
     @OneToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
     List<employe> employes = new ArrayList<employe>();
     public long getIdDepart() {
         return idDepart;

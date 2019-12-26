@@ -6,12 +6,17 @@ import javax.persistence.*;
 
 @Data
 @Entity
+@Table
 public class employe {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column
     long idEmploye;
+    @Column
     String nomEmploye;
+    @Column
     String prenomEmploye;
+    @Column
     String ville;
     @ManyToOne
     departement departement;
